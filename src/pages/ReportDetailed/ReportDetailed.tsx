@@ -91,7 +91,10 @@ export const ReportDetailed = () => {
             <div className={s.root__toolbar__btn}>
               <div style={{ textAlign: "end" }}>
                 <Text size="sm" fw={500}>
-                  Отправлено: {format(report.sentTime, "HH:mm dd.MM.yyyy")}
+                  Отправлено:{" "}
+                  {report.sentTime
+                    ? format(report.sentTime, "HH:mm dd.MM.yyyy")
+                    : "Неизвестно"}
                 </Text>
 
                 {report.receivedTime ? (

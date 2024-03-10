@@ -7,8 +7,8 @@ import {
 } from "./types";
 
 const ENDPOINTS = {
-  base: "/api/v1/document/",
-  withPath: (path: unknown) => `/api/v1/document/${path}`,
+  base: "/api/document/",
+  withPath: (path: unknown) => `/api/document/${path}`,
 };
 
 export const getAll = async (options: {

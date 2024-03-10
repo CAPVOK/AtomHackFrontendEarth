@@ -1,11 +1,10 @@
 import { RouteObject } from "react-router-dom";
 import { MainLayout } from "./widget/MainLayout";
-import { IconMail, IconUser, IconPencil } from "@tabler/icons-react";
+import { IconMail } from "@tabler/icons-react";
 import { Reports } from "./pages/Reports/Reports";
 import { ReportDetailed } from "./pages/ReportDetailed";
 import { AuthPage } from "./pages/Auth";
 import { NotFoundPage } from "./pages/NotFound";
-import { Drafts } from "./pages/Drafts";
 
 /**
  * Маршруты приложения
@@ -44,27 +43,15 @@ export const routes: IAppRoute[] = [
     element: <MainLayout />,
     children: [
       {
-        label: "Все отчеты",
+        label: "Отчеты",
         path: RoutesEnum.AllReports,
         index: true,
         element: <Reports />,
         icon: <IconMail size="18" stroke={1.5} key={RoutesEnum.AllReports} />,
       },
       {
-        label: "Мои отчеты",
-        path: RoutesEnum.MyReports,
-        element: <Reports isUserReports={true} key={RoutesEnum.MyReports} />,
-        icon: <IconUser size="18" stroke={1.5} />,
-      },
-      {
         path: RoutesEnum.Report + ":id",
         element: <ReportDetailed />,
-      },
-      {
-        path: RoutesEnum.Drafts,
-        element: <Drafts />,
-        label: "Черновики",
-        icon: <IconPencil size="18" stroke={1.5} />,
       },
     ],
   },

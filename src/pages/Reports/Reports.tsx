@@ -1,4 +1,4 @@
-import { Group, Pagination, Select, Table, TextInput } from "@mantine/core";
+import { Group, Pagination, Table, TextInput } from "@mantine/core";
 import { useCallback, useEffect, useState } from "react";
 import { Report } from "../../entities/Report/Report";
 import { ReportModel } from "../../entities/Report/types";
@@ -69,34 +69,9 @@ export const Reports = (props: IReportsProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage]);
 
-  const handleStatusChange = (status: string | null) => {
-    if (!status) {
-      searchParams.delete("deliveryStatus");
-    }
-    if (status === "Успешно") {
-      searchParams.set("deliveryStatus", "SUCCESS");
-    }
-    if (status === "В ожидании") {
-      searchParams.set("deliveryStatus", "PENDING");
-    }
-
-    setSearchParams(searchParams);
-    setCurrentPage(1);
-  };
-
   return (
     <div className="reports-table">
       <div className="reports-table-filters">
-        <Select
-          placeholder="Указать фильтры"
-          className="reports-table-filters__status"
-          data={["Успешно", "В ожидании"]}
-          label="Выберите статусы"
-          comboboxProps={{
-            transitionProps: { transition: "scale-y", duration: 200 },
-          }}
-          onChange={(value) => handleStatusChange(value)}
-        />
         <TextInput
           placeholder="Искать"
           label="Поиск"
@@ -117,36 +92,40 @@ export const Reports = (props: IReportsProps) => {
         <Table.Tbody>
           {!!reports &&
             !!reports.length &&
+            !!reports &&
+            !!reports.length &&
             reports
-              .filter((report) => {
-                const statuses = JSON.parse(
+                .filter((report) => {
+                  const statuses = JSON.parse(
+                  
                   searchParams.get("statuses") || "[]"
+                
                 );
 
-                return (
-                  !statuses.length || statuses.includes(report.deliveryStatus)
-                );
-              })
-              .filter((report) => {
-                const search = searchParams.get("search") || "";
+                  return (
+                    !statuses.length || statuses.includes(report.deliveryStatus)
+                  );
+                })
+                .filter((report) => {
+                  const search = searchParams.get("search") || "";
 
-                return (
-                  report.owner.toLowerCase().includes(search.toLowerCase()) ||
-                  report.payload?.toLowerCase().includes(search.toLowerCase())
-                );
-              })
-              .map((report) => (
-                <Report
-                  key={report.id}
-                  owner={report.owner}
-                  sentTime={new Date(report.sentTime)}
-                  receivedTime={new Date(report.receivedTime || "")}
-                  status={report.deliveryStatus}
-                  file={report.file}
-                  id={report.id}
-                  title={report.title}
-                />
-              ))}
+                  return (
+                    report.owner.toLowerCase().includes(search.toLowerCase()) ||
+                    report.payload?.toLowerCase().includes(search.toLowerCase())
+                  );
+                })
+                .map((report) => (
+                  <Report
+                    key={report.id}
+                    owner={report.owner}
+                    sentTime={new Date(report.sentTime)}
+                    receivedTime={new Date(report.receivedTime || "")}
+                    status={report.deliveryStatus}
+                    file={report.file}
+                    id={report.id}
+                    title={report.title}
+                  />
+                ))}
         </Table.Tbody>
       </Table>
 
