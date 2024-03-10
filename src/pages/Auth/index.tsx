@@ -1,7 +1,7 @@
 import { TextInput, Button, PasswordInput, Image, Dialog, Text } from "@mantine/core";
 import s from "./Auth.module.scss";
 import { useState } from "react";
-import logo from "../../assets/mars_logo1.png";
+import logo from "../../assets/earth.jpg";
 import React from "react";
 import { useNavigate } from "react-router";
 import { RoutesEnum } from "../../AppRoutes";
