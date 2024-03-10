@@ -1,4 +1,11 @@
-import { TextInput, Button, PasswordInput, Image, Dialog, Text } from "@mantine/core";
+import {
+  TextInput,
+  Button,
+  PasswordInput,
+  Image,
+  Dialog,
+  Text,
+} from "@mantine/core";
 import s from "./Auth.module.scss";
 import { useState } from "react";
 import logo from "../../assets/earth.jpg";
@@ -17,7 +24,10 @@ export const AuthPage = (): React.ReactNode => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
 
-  const handleLogin = () => {
+  const handleLogin = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    event.preventDefault();
     if (!userData.login.trim()) {
       setError("Введите логин");
       return;
@@ -43,12 +53,8 @@ export const AuthPage = (): React.ReactNode => {
   return (
     <div className={s.root}>
       <Dialog opened={true}>
-        <Text size="sm">
-          Пароль: admin
-        </Text>
-        <Text size="sm">
-          Логин: admin
-        </Text>
+        <Text size="sm">Пароль: admin</Text>
+        <Text size="sm">Логин: admin</Text>
       </Dialog>
       <form className={s.form}>
         <Image src={logo} alt="logo" className={s.logo} />
@@ -67,7 +73,12 @@ export const AuthPage = (): React.ReactNode => {
           }
         />
         <div className={s.error}>{error}</div>
-        <Button onClick={handleLogin} color="green.8" className={s.button} type="submit">
+        <Button
+          onClick={handleLogin}
+          color="green.8"
+          className={s.button}
+          type="submit"
+        >
           Войти
         </Button>
       </form>
