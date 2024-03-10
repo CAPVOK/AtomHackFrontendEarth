@@ -13,6 +13,10 @@
     background-color: white;
     gap: 20px;
     width: 50%;
+
+    button {
+        margin-top: 10px;
+    }
 }
 
 .error {
@@ -25,10 +29,10 @@
     .form {
         width: 80%;
     }
-    
+
 }
 
-@media screen and (max-width: 400px){
+@media screen and (max-width: 400px) {
     .form {
         width: 90%;
     }

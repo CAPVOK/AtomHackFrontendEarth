@@ -67,7 +67,7 @@ export const AuthPage = (): React.ReactNode => {
           }
         />
         <div className={s.error}>{error}</div>
-        <Button onClick={handleLogin} color="orange" className={s.button} type="submit">
+        <Button onClick={handleLogin} color="green.8" className={s.button} type="submit">
           Войти
         </Button>
       </form>

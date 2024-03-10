@@ -36,12 +36,12 @@ export const Report: React.FC<Props> = ({
       </Table.Td>
       {sentTime && (
         <Table.Td className="report-timestamp">
-          {format(sentTime, "d LLL p", { locale: ru })}
+          {format(sentTime, "d LLL p:ss", { locale: ru })}
         </Table.Td>
       )}
       {isDraft && !!createdAt && (
         <Table.Td className="report-timestamp">
-          {format(createdAt, "d LLL p", { locale: ru })}
+          {format(createdAt, "d LLL p:ss", { locale: ru })}
         </Table.Td>
       )}
       {status && (

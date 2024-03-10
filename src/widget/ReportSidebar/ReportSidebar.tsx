@@ -1,5 +1,5 @@
-import { NavLink } from "@mantine/core";
-import { IconChevronRight } from "@tabler/icons-react";
+import { ActionIcon, NavLink } from "@mantine/core";
+import { IconChevronRight, IconLogout } from "@tabler/icons-react";
 import DraftReport from "../../feature/DraftReport";
 import { useState } from "react";
 import { Text } from "@mantine/core";
@@ -11,7 +11,11 @@ import { useAuth } from "../../utils/hooks/useAuth";
 
 export const ReportSidebar = () => {
   const [isDraftOpen, setIsDraftOpen] = useState(false);
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
+
+  const logoutHandleClick = () => {
+    logout();
+  };
 
   const items = AppRoutes.map((item) => (
     <NavLink
@@ -24,7 +28,6 @@ export const ReportSidebar = () => {
       rightSection={<IconChevronRight size="18" stroke={1.5} />}
       leftSection={item.icon}
       color="green.8"
-      variant="filled"
     />
   ));
 
@@ -32,9 +35,32 @@ export const ReportSidebar = () => {
     <>
       {isDraftOpen && <DraftReport toggleReport={setIsDraftOpen} />}
       <div className={s.sidebar}>
-        <Text size="md" fw={700}>
+        <div className={s["sidebar-manage"]}>
+          <Text size="md" fw={700}>
+            {user.name.toUpperCase()}
+          </Text>
+          <ActionIcon
+            variant="light"
+            color="red"
+            size="lg"
+            aria-label="Settings"
+            onClick={logoutHandleClick}
+          >
+            <IconLogout className={s["sidebar__refresh-btn"]} stroke={2} />
+          </ActionIcon>
+        </div>
+        {/* <Text size="md" fw={700}>
           {user.name.toUpperCase()}
         </Text>
+        <ActionIcon
+          variant="light"
+          color="red"
+          size="lg"
+          aria-label="Settings"
+          onClick={logoutHandleClick}
+        >
+          <IconLogout className={s["sidebar__refresh-btn"]} stroke={2} />
+        </ActionIcon> */}
         <div className="sidebar-menu">{items}</div>
       </div>
     </>

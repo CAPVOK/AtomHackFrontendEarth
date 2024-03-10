@@ -93,14 +93,14 @@ export const ReportDetailed = () => {
                 <Text size="sm" fw={500}>
                   Отправлено:{" "}
                   {report.sentTime
-                    ? format(report.sentTime, "HH:mm dd.MM.yyyy")
+                    ? format(report.sentTime, "HH:mm:ss dd.MM.yyyy")
                     : "Неизвестно"}
                 </Text>
 
                 {report.receivedTime ? (
                   <Text size="sm" fw={500}>
                     Доставлено:{" "}
-                    {format(report.receivedTime, "HH:mm dd.MM.yyyy")}
+                    {format(report.receivedTime, "HH:mm:ss dd.MM.yyyy")}
                   </Text>
                 ) : (
                   <Text c="red" size="sm" fw={500}>
@@ -112,6 +112,7 @@ export const ReportDetailed = () => {
                 variant="filled"
                 aria-label="Сохранить"
                 onClick={handleSave}
+                color="green.8"
               >
                 <IconDownload
                   style={{ width: "80%", height: "80%" }}
