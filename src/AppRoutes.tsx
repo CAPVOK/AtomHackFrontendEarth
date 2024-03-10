@@ -1,6 +1,6 @@
 import { RouteObject } from "react-router-dom";
 import { MainLayout } from "./widget/MainLayout";
-import { IconMail, IconUser } from "@tabler/icons-react";
+import { IconMail } from "@tabler/icons-react";
 import { Reports } from "./pages/Reports/Reports";
 import { ReportDetailed } from "./pages/ReportDetailed";
 
@@ -44,12 +44,6 @@ export const routes: IAppRoute[] = [
         index: true,
         element: <Reports />,
         icon: <IconMail size="18" stroke={1.5} key={RoutesEnum.AllReports} />,
-      },
-      {
-        label: "Мои отчеты",
-        path: RoutesEnum.MyReports,
-        element: <Reports isUserReports={true} key={RoutesEnum.MyReports} />,
-        icon: <IconUser size="18" stroke={1.5} />,
       },
       {
         path: RoutesEnum.Report + ":id",

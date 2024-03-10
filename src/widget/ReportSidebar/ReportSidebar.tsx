@@ -1,18 +1,14 @@
-import { ActionIcon, Button, NavLink } from "@mantine/core";
+import { ActionIcon, NavLink } from "@mantine/core";
 import {
   IconChevronRight,
-  IconPencilPlus,
   IconRefresh,
 } from "@tabler/icons-react";
-import DraftReport from "../../feature/DraftReport";
-import { useState } from "react";
 
 import s from "./ReportSidebar.module.scss";
 import { smallRoutes as AppRoutes } from "../../AppRoutes";
 import { Link, useLocation } from "react-router-dom";
 
 export const ReportSidebar = () => {
-  const [isDraftOpen, setIsDraftOpen] = useState(false);
 
   const { pathname } = useLocation();
 
@@ -32,18 +28,8 @@ export const ReportSidebar = () => {
 
   return (
     <>
-      {isDraftOpen && <DraftReport toggleReport={setIsDraftOpen} />}
       <div className={s.sidebar}>
         <div className={s["sidebar__new-btn"]}>
-          <Button
-            leftSection={<IconPencilPlus size={20} />}
-            fullWidth
-            variant="filled"
-            color="violet"
-            onClick={() => setIsDraftOpen((state) => !state)}
-          >
-            Написать
-          </Button>
           <ActionIcon
             variant="filled"
             color="violet"
